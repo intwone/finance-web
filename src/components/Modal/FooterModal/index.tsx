@@ -27,10 +27,8 @@ export default function FooterModal({
   }
 
   function disabledButton() {
-    if (isDisabledButton)
-      return (
-        formStates?.loading || !formStates?.isDirty || !formStates?.isValid
-      );
+    if (!isDisabledButton) return false;
+    return formStates?.loading || !formStates?.isDirty || !formStates?.isValid;
   }
 
   return (
