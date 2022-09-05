@@ -39,7 +39,7 @@ export default function TransactionPage() {
 
   useEffect(() => {
     getAllTransactionsLazyQuery().then(res => res.refetch());
-  }, []);
+  }, [getAllTransactionsLazyQuery]);
 
   const transactionMapped = getAlltransactionData?.getTransactions.map(
     transaction => {
