@@ -138,7 +138,7 @@ export default function CreateNewTransactionModal({
         <FooterModal
           buttonTitle="Salvar"
           closeModalFn={handleCloseModal}
-          isDisabledButton={true}
+          isDisabledButton
           formStates={{ isDirty, isValid, loading }}
         />
       </form>

@@ -147,10 +147,10 @@ export default function EditTransactionModal({
 
         <FooterModal
           closeModalFn={handleCloseModal}
-          hasDeleteButton={true}
+          hasDeleteButton
           buttonTitle="Salvar"
           transaction={transaction}
-          isDisabledButton={true}
+          isDisabledButton
           formStates={{ isDirty, isValid, loading }}
         />
       </form>

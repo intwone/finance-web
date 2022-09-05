@@ -31,7 +31,6 @@ export default function FooterModal({
       return (
         formStates?.loading || !formStates?.isDirty || !formStates?.isValid
       );
-    return;
   }
 
   return (

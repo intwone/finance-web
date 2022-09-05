@@ -75,7 +75,7 @@ export default function SignInPage() {
           )}
         </Button>
 
-        <Link to={''} className="forgot-password">
+        <Link to="" className="forgot-password">
           Esqueceu sua senha?
         </Link>
 

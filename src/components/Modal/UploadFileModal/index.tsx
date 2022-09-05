@@ -129,7 +129,7 @@ export default function UploadFileModal({
         <FooterModal
           closeModalFn={handleCloseModal}
           buttonTitle="Salvar"
-          isDisabledButton={true}
+          isDisabledButton
           formStates={{
             isDirty: Boolean(file),
             isValid: Boolean(file),
