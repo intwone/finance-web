@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@src/components/Button';
 import Input from '@src/components/Input';
+import { StringHelper } from '@src/helpers/StringHelper';
 import {
   GetAllTransactionsDocument,
   GetBoxSummaryInfoDocument,
@@ -35,6 +36,7 @@ export default function EditTransactionModal({
   isVisibleModal,
   handleCloseModal,
 }: ModalProps) {
+  const [value, setValue] = useState('');
   const [type, setType] = useState<string | null | undefined>('');
   const [isVisibleConfirmDeleteModal, setIsVisibleConfirmDeleteModal] =
     useState(false);
@@ -61,10 +63,11 @@ export default function EditTransactionModal({
 
   async function onSubmit({ category, title, value }: FormProps) {
     try {
+      const valueFormatted = StringHelper.removeMask(String(value));
       await updateTransactionMutation({
         variables: {
           id: transaction?.id,
-          data: { category, title, type, value },
+          data: { category, title, type, value: valueFormatted },
         },
         refetchQueries: [
           { query: GetAllTransactionsDocument },
@@ -113,8 +116,14 @@ export default function EditTransactionModal({
               id="value"
               register={register}
               error={errors.value}
-              defaultValue={transaction?.value}
+              defaultValue={StringHelper.currencyMask(
+                String(transaction?.value),
+              )}
               placeholder="Digite o valor da transação"
+              onChange={e => {
+                e.target.value = StringHelper.currencyMask(e.target.value);
+                setValue(e.target.value);
+              }}
             />
 
             <TransactionTypeContainer>
@@ -164,7 +173,7 @@ export default function EditTransactionModal({
             </CancelContainer>
             <Button
               type="submit"
-              disabled={loading || !isDirty || !isValid}
+              disabled={loading || !isDirty || !isValid || value === '0,00'}
               style={{ height: '40px', width: '150px' }}
             >
               {loading ? (

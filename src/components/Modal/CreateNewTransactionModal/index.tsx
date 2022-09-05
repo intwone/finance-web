@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@src/components/Button';
 import Input from '@src/components/Input';
+import { StringHelper } from '@src/helpers/StringHelper';
 import {
   GetAllTransactionsDocument,
   GetBoxSummaryInfoDocument,
@@ -32,6 +33,7 @@ export default function CreateNewTransactionModal({
   handleCloseModal,
 }: ModalProps) {
   const [type, setType] = useState('income');
+  const [value, setValue] = useState('');
 
   const {
     handleSubmit,
@@ -48,11 +50,12 @@ export default function CreateNewTransactionModal({
 
   async function onSubmit({ category, title, value }: FormProps) {
     try {
+      const valueFormatted = StringHelper.removeMask(String(value));
       await createNewTransactionMutation({
         variables: {
           title,
           category,
-          value: Number(value),
+          value: valueFormatted,
           type,
         },
         refetchQueries: [
@@ -104,6 +107,10 @@ export default function CreateNewTransactionModal({
               register={register}
               error={errors.value}
               placeholder="Digite o valor da transação"
+              onChange={e => {
+                e.target.value = StringHelper.currencyMask(e.target.value);
+                setValue(e.target.value);
+              }}
             />
 
             <TransactionTypeContainer>
@@ -145,7 +152,7 @@ export default function CreateNewTransactionModal({
             </CancelContainer>
             <Button
               type="submit"
-              disabled={loading || !isDirty || !isValid}
+              disabled={loading || !isDirty || !isValid || value === '0,00'}
               style={{ height: '40px', width: '150px' }}
             >
               {loading ? (
