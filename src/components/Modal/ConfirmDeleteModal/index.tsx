@@ -64,6 +64,7 @@ export default function ConfirmDeleteModal({
         <div>
           <CancelContainer onClick={handleCloseModal}>Cancelar</CancelContainer>
           <Button
+            disabled={loading}
             onClick={() => {
               if (!transaction?.id) return;
               handleDelete(transaction.id);
