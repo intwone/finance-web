@@ -1,4 +1,5 @@
 import DashboardPage from '@src/pages/DashboardPage';
+import NotFoundPage from '@src/pages/NotFoundPage';
 import SignInPage from '@src/pages/SignInPage';
 import SignUpPage from '@src/pages/SignUpPage';
 import { Route, Routes } from 'react-router-dom';
@@ -10,6 +11,7 @@ export default function Routers() {
     <Routes>
       <Route path="/" element={<SignInPage />} />
       <Route path="/register" element={<SignUpPage />} />
+      <Route path="*" element={<NotFoundPage />} />
       <Route path="transactions" element={<Private />}>
         <Route path="/transactions" element={<TransactionPage />} />
       </Route>
