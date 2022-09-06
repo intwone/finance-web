@@ -43,7 +43,10 @@ export default function SignUpPage() {
       });
       toast.success('Usuário criado com sucesso.');
       reset();
-    } catch {
+    } catch (error: any) {
+      if (error?.message.includes('already')) {
+        return toast.warning('E-mail em uso.');
+      }
       toast.error('Ocorreu um erro ao criar o usuário.');
     }
   }
