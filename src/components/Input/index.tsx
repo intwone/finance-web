@@ -23,7 +23,7 @@ export default function Input({
       </ContainerInput>
 
       {error && (
-        <ErrorContainer>
+        <ErrorContainer data-testid="error-message">
           <p>{error.message}</p>
         </ErrorContainer>
       )}

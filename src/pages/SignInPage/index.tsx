@@ -33,7 +33,7 @@ export default function SignInPage() {
 
   async function onSubmit({ email, password }: FormProps) {
     const result = await signIn({ email, password });
-    if (!result) return toast.error('Email ou senha incorreto.');
+    if (!result) return toast.error('E-mail ou senha incorreto.');
     return navigate('/transactions');
   }
 
@@ -46,6 +46,7 @@ export default function SignInPage() {
         />
 
         <Input
+          data-testid="email-input"
           type="email"
           id="email"
           register={register}
@@ -54,6 +55,7 @@ export default function SignInPage() {
         />
 
         <Input
+          data-testid="password-input"
           type={passwordInputState.typePasswordInput}
           id="password"
           icon={passwordInputState.eyeIcon}
@@ -64,6 +66,7 @@ export default function SignInPage() {
         />
 
         <Button
+          data-testid="signin-button"
           type="submit"
           style={{ height: 40 }}
           disabled={isSubmitting || !isDirty || !isValid}
@@ -80,7 +83,10 @@ export default function SignInPage() {
         </Link>
 
         <NoHaveRegister>
-          Não tem cadastro? <Link to="/register">Cadastrar</Link>
+          Não tem cadastro?{' '}
+          <Link to="/register" data-testid="register-button">
+            Cadastrar
+          </Link>
         </NoHaveRegister>
       </Form>
     </Container>

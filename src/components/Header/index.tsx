@@ -36,7 +36,11 @@ export default function Header() {
 
         <IconLogout>
           <a>
-            <AiOutlinePoweroff size={25} onClick={handleShowLogoutModal} />
+            <AiOutlinePoweroff
+              data-testid="logout-button"
+              size={25}
+              onClick={handleShowLogoutModal}
+            />
           </a>
         </IconLogout>
       </Container>
