@@ -1,5 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
-import { AuthProvider } from '@src/hooks/auth/auth';
+import { AuthProvider } from '@src/context/auth';
 import { apolloClient } from '@src/services/clients/apolloClient';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';

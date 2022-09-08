@@ -1,5 +1,5 @@
 import { StringHelper } from '@src/helpers/StringHelper';
-import { useAuth } from '@src/hooks/auth/auth';
+import { useAuth } from '@src/hooks/useAuth';
 import { useState } from 'react';
 import Avatar from 'react-avatar';
 import { AiOutlinePoweroff } from 'react-icons/ai';

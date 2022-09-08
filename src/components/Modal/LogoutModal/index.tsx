@@ -1,5 +1,5 @@
 import Button from '@src/components/Button';
-import { useAuth } from '@src/hooks/auth/auth';
+import { useAuth } from '@src/hooks/useAuth';
 import theme from '@src/theme';
 import { CgClose } from 'react-icons/cg';
 import ReactModal from 'react-modal';

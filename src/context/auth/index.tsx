@@ -1,20 +1,16 @@
+import { localStorageEnum } from '@src/enums/localStorageEnum';
 import axiosClientApi from '@src/services/clients/axiosClient';
 import { useLoginLazyQuery } from '@src/services/graphql/generated/schema';
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import { createContext, useCallback, useMemo, useState } from 'react';
 import { AuthContextData, AuthProviderProps, SignInCredentials } from './types';
 
+const { TOKEN, USER } = localStorageEnum;
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps) {
   const [data, setData] = useState(() => {
-    const token = localStorage.getItem('@financeweb:token');
-    const user = localStorage.getItem('@financeweb:user');
+    const token = localStorage.getItem(TOKEN);
+    const user = localStorage.getItem(USER);
 
     if (token && user) {
       axiosClientApi.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -37,8 +33,8 @@ function AuthProvider({ children }: AuthProviderProps) {
 
       if (!token && !user) return false;
 
-      localStorage.setItem('@financeweb:token', token);
-      localStorage.setItem('@financeweb:user', JSON.stringify(user));
+      localStorage.setItem(TOKEN, token);
+      localStorage.setItem(USER, JSON.stringify(user));
 
       axiosClientApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 
@@ -50,8 +46,8 @@ function AuthProvider({ children }: AuthProviderProps) {
   );
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@financeweb:token');
-    localStorage.removeItem('@financeweb:user');
+    localStorage.removeItem(TOKEN);
+    localStorage.removeItem(USER);
     setData({});
   }, []);
 
@@ -67,10 +63,4 @@ function AuthProvider({ children }: AuthProviderProps) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-const useAuth = (): AuthContextData => {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth must be used within an AuthProvider');
-  return context;
-};
-
-export { AuthProvider, useAuth };
+export { AuthProvider, AuthContext };

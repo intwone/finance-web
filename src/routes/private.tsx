@@ -1,4 +1,4 @@
-import { useAuth } from '@src/hooks/auth/auth';
+import { useAuth } from '@src/hooks/useAuth';
 import { Navigate, Outlet } from 'react-router-dom';
 
 export default function Private() {

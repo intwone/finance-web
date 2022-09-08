@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@src/components/Button';
 import Input from '@src/components/Input';
-import { useAuth } from '@src/hooks/auth/auth';
+import { useAuth } from '@src/hooks/useAuth';
 import theme from '@src/theme';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
