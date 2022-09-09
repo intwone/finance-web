@@ -1,6 +1,7 @@
 import theme from '@src/theme';
 import { transparentize } from 'polished';
 import styled, { css } from 'styled-components';
+import { baseArchorButtonStyle, baseCancelButtonStyle } from '../style';
 
 export const Content = styled.div`
   padding: 20px;
@@ -34,10 +35,15 @@ export const ModalFooter = styled.div`
   align-items: center;
   padding: 10px 20px;
   background-color: ${transparentize('0.7', '#28262E')};
+  justify-content: space-between;
 
   div {
     display: flex;
     align-items: center;
+  }
+
+  a {
+    ${baseCancelButtonStyle}
   }
 
   button {
@@ -51,17 +57,6 @@ export const ModalFooter = styled.div`
       background-color: ${transparentize(0.3, theme.colors.orange[700])};
       color: ${theme.colors.txt};
     }
-  }
-`;
-
-export const CancelContainer = styled.a`
-  margin-right: 30px;
-  font-size: 0.93rem;
-  cursor: pointer;
-  transition: color 0.3s;
-
-  &:hover {
-    color: ${theme.colors.orange[700]};
   }
 `;
 
@@ -109,22 +104,18 @@ export const FileUploadedContainer = styled.div`
 `;
 
 export const RemoveTransactionContainer = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: ${transparentize(0.8, '#8C8C8C')};
-  padding: 5px;
-  font-size: 0.68rem;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  cursor: pointer;
+  ${baseArchorButtonStyle}
 
   a {
     margin-left: 5px;
   }
+`;
 
-  &:hover {
-    transition: background-color 0.3s;
-    background-color: ${theme.colors.orange[700]};
-    color: ${theme.colors.txt};
+export const DownloadTemplateFile = styled.div`
+  ${baseArchorButtonStyle}
+
+  svg {
+    font-size: 14px;
+    margin-right: 3px;
   }
 `;

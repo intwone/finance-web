@@ -1,6 +1,7 @@
 import Button from '@src/components/Button';
 import DropzoneContentMessage from '@src/components/DropzoneContentMessage';
 import FileUploaded from '@src/components/FileUploaded';
+import config from '@src/config';
 import { createTransactionFile } from '@src/services/axios/CreateTransactionFile';
 import {
   useGetAllTransactionsLazyQuery,
@@ -11,6 +12,7 @@ import theme from '@src/theme';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
+import { AiOutlineCloudDownload } from 'react-icons/ai';
 import { CgClose } from 'react-icons/cg';
 import { FaTrash } from 'react-icons/fa';
 import { IoMdCloudUpload } from 'react-icons/io';
@@ -19,8 +21,8 @@ import ReactModal from 'react-modal';
 import { toast } from 'react-toastify';
 import { FileProps, ModalProps } from '../types';
 import {
-  CancelContainer,
   Content,
+  DownloadTemplateFile,
   DropzoneContainer,
   FileUploadedContainer,
   ModalBody,
@@ -66,6 +68,10 @@ export default function UploadFileModal({
     getTransactionInfoLazyQuery().then(res => res.refetch());
     getBoxSummaryInfoLazyQuery().then(res => res.refetch());
     getAllTransactionsLazyQuery().then(res => res.refetch());
+  }
+
+  function handleDownloadTemplateFile() {
+    window.location.href = config.aws.templateFileUrl;
   }
 
   async function onSubmit() {
@@ -130,10 +136,12 @@ export default function UploadFileModal({
         )}
 
         <ModalFooter>
+          <DownloadTemplateFile onClick={handleDownloadTemplateFile}>
+            <AiOutlineCloudDownload />
+            <p>Baixar template</p>
+          </DownloadTemplateFile>
           <div>
-            <CancelContainer onClick={handleCloseModal}>
-              Cancelar
-            </CancelContainer>
+            <a onClick={handleCloseModal}>Cancelar</a>
             <Button
               type="submit"
               disabled={isSubmitting || !file}
