@@ -1,7 +1,76 @@
 import theme from '@src/theme';
 import { transparentize } from 'polished';
-import styled from 'styled-components';
-import { RadioBoxProps } from './types';
+import styled, { css } from 'styled-components';
+import { RadioBoxProps } from './CreateNewTransactionModal/types';
+
+export const RemoveTransactionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: ${transparentize(0.8, '#8C8C8C')};
+  padding: 8px;
+  font-size: 0.68rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    transition: background-color 0.3s;
+    background-color: ${theme.colors.orange[700]};
+    color: ${theme.colors.txt};
+  }
+
+  a {
+    margin-left: 5px;
+  }
+`;
+
+export const baseCancelButtonStyle = css`
+  margin-right: 30px;
+  font-size: 0.93rem;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: ${theme.colors.orange[700]};
+  }
+`;
+
+export const ModalFooter = styled.div<{ justifyContent: string }>`
+  display: flex;
+  justify-content: ${prop => prop.justifyContent};
+  align-items: center;
+  padding: 10px 20px;
+  background-color: ${transparentize('0.7', '#28262E')};
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  .cancel-button {
+    margin-right: 30px;
+    font-size: 0.93rem;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: ${theme.colors.orange[700]};
+    }
+  }
+
+  button {
+    background: ${theme.colors.orange[700]};
+    border-radius: 5px;
+    color: ${theme.colors.txt};
+    transition: background-color 0.3s;
+    display: flex;
+
+    &:hover {
+      background-color: ${transparentize(0.3, theme.colors.orange[700])};
+      color: ${theme.colors.txt};
+    }
+  }
+`;
 
 const colors = {
   green: theme.colors.green[900],
@@ -16,66 +85,6 @@ export const ModalBody = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-`;
-
-export const ModalFooter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: ${transparentize('0.7', '#28262E')};
-
-  div {
-    flex-direction: row;
-    display: flex;
-    align-items: center;
-  }
-
-  button {
-    background: ${theme.colors.orange[700]};
-    border: 0;
-    border-radius: 5px;
-    color: ${theme.colors.txt};
-    transition: background-color 0.3s;
-    display: flex;
-
-    &:hover {
-      background-color: ${transparentize(0.3, theme.colors.orange[700])};
-      color: ${theme.colors.txt};
-    }
-  }
-`;
-
-export const CancelContainer = styled.a`
-  margin-right: 30px;
-  font-size: 0.93rem;
-  cursor: pointer;
-  transition: color 0.3s;
-
-  &:hover {
-    color: ${theme.colors.orange[700]};
-  }
-`;
-
-export const RemoveTransactionContainer = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: ${transparentize(0.8, '#8C8C8C')};
-  padding: 8px;
-  font-size: 0.75rem;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  cursor: pointer;
-
-  a {
-    margin-left: 5px;
-  }
-
-  &:hover {
-    transition: background-color 0.3s;
-    background-color: ${theme.colors.orange[700]};
-    color: ${theme.colors.txt};
-  }
 `;
 
 export const TransactionTypeContainer = styled.div`
@@ -114,13 +123,5 @@ export const RadioBox = styled.button<RadioBoxProps>`
   &:hover {
     transition: filter 0.3s;
     filter: brightness(0.8);
-  }
-`;
-
-export const ErrorsContainer = styled.div`
-  padding: 0 0 20px 20px;
-
-  div + div {
-    margin-top: 3px;
   }
 `;

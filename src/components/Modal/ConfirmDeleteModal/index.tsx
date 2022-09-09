@@ -10,8 +10,10 @@ import { CgClose } from 'react-icons/cg';
 import ReactLoading from 'react-loading';
 import ReactModal from 'react-modal';
 import { toast } from 'react-toastify';
-import { ModalProps } from '../types';
-import { CancelContainer, ModalBody, ModalFooter } from './style';
+// import { ModalFooter } from '../commonStyle';
+import { ModalFooter } from '../commonStyle';
+import { ModalProps } from '../commonTypes';
+import { ModalBody } from './style';
 
 export default function ConfirmDeleteModal({
   transaction,
@@ -60,15 +62,18 @@ export default function ConfirmDeleteModal({
         </p>
       </ModalBody>
 
-      <ModalFooter>
+      <ModalFooter justifyContent="end">
         <div>
-          <CancelContainer onClick={handleCloseModal}>Cancelar</CancelContainer>
+          <a className="cancel-button" onClick={handleCloseModal}>
+            Cancelar
+          </a>
           <Button
             disabled={loading}
             onClick={() => {
               if (!transaction?.id) return;
               handleDelete(transaction.id);
             }}
+            style={{ height: '40px', width: '150px' }}
           >
             {loading ? (
               <ReactLoading type="spin" height={20} width={20} />

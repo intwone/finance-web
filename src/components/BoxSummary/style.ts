@@ -29,5 +29,5 @@ export const Value = styled.h1<{
     if (changeColor && value > 0) return theme.colors.green[900];
     if (!changeColor || value === 0) return theme.colors.gray[700];
     return theme.colors.red[800];
-  }}};
+  }};
 `;

@@ -19,15 +19,14 @@ import { IoMdCloudUpload } from 'react-icons/io';
 import ReactLoading from 'react-loading';
 import ReactModal from 'react-modal';
 import { toast } from 'react-toastify';
-import { FileProps, ModalProps } from '../types';
+import { ModalFooter, RemoveTransactionContainer } from '../commonStyle';
+import { FileProps, ModalProps } from '../commonTypes';
 import {
   Content,
   DownloadTemplateFile,
   DropzoneContainer,
   FileUploadedContainer,
   ModalBody,
-  ModalFooter,
-  RemoveTransactionContainer,
 } from './style';
 
 export default function UploadFileModal({
@@ -135,13 +134,15 @@ export default function UploadFileModal({
           </FileUploadedContainer>
         )}
 
-        <ModalFooter>
+        <ModalFooter justifyContent="space-between">
           <DownloadTemplateFile onClick={handleDownloadTemplateFile}>
             <AiOutlineCloudDownload />
             <p>Baixar template</p>
           </DownloadTemplateFile>
           <div>
-            <a onClick={handleCloseModal}>Cancelar</a>
+            <a className="cancel-button" onClick={handleCloseModal}>
+              Cancelar
+            </a>
             <Button
               type="submit"
               disabled={isSubmitting || !file}

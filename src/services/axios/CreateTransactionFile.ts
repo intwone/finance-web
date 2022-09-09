@@ -1,4 +1,4 @@
-import { FileProps } from '@src/components/Modal/types';
+import { FileProps } from '@src/components/Modal/commonTypes';
 import axiosClient from '../clients/axiosClient';
 
 export async function createTransactionFile(file: FileProps): Promise<void> {

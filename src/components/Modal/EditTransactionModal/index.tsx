@@ -17,18 +17,17 @@ import { FaTrash } from 'react-icons/fa';
 import ReactLoading from 'react-loading';
 import ReactModal from 'react-modal';
 import { toast } from 'react-toastify';
-import ConfirmDeleteModal from '../ConfirmDeleteModal';
-import { ModalProps } from '../types';
-import { schema } from './schema';
 import {
-  CancelContainer,
   Content,
   ModalBody,
   ModalFooter,
   RadioBox,
   RemoveTransactionContainer,
   TransactionTypeContainer,
-} from './style';
+} from '../commonStyle';
+import { ModalProps } from '../commonTypes';
+import ConfirmDeleteModal from '../ConfirmDeleteModal';
+import { schema } from './schema';
 import { FormProps } from './types';
 
 export default function EditTransactionModal({
@@ -159,7 +158,7 @@ export default function EditTransactionModal({
           </ModalBody>
         </Content>
 
-        <ModalFooter>
+        <ModalFooter justifyContent="space-between">
           <RemoveTransactionContainer
             onClick={() => handleShowConfirmDeleteModal()}
           >
@@ -168,9 +167,9 @@ export default function EditTransactionModal({
           </RemoveTransactionContainer>
 
           <div>
-            <CancelContainer onClick={handleCloseModal}>
+            <a className="cancel-button" onClick={handleCloseModal}>
               Cancelar
-            </CancelContainer>
+            </a>
             <Button
               type="submit"
               disabled={loading || !isDirty || !isValid || value === '0,00'}

@@ -1,6 +1,6 @@
 import filesize from 'filesize';
 import { FaFileCsv } from 'react-icons/fa';
-import { FileProps } from '../Modal/types';
+import { FileProps } from '../Modal/commonTypes';
 import { Container, FileInfo } from './style';
 
 export default function FileUploaded({ name, size }: FileProps) {

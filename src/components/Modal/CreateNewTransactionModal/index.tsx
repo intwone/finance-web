@@ -6,7 +6,7 @@ import {
   GetAllTransactionsDocument,
   GetBoxSummaryInfoDocument,
   GetTransactionInfoDocument,
-  useCreateNewTransactionMutation,
+  useCreateNewTransactionMutation
 } from '@src/services/graphql/generated/schema';
 import theme from '@src/theme';
 import { useState } from 'react';
@@ -16,16 +16,16 @@ import { CgClose } from 'react-icons/cg';
 import ReactLoading from 'react-loading';
 import ReactModal from 'react-modal';
 import { toast } from 'react-toastify';
-import { ModalProps } from '../types';
-import { schema } from './schema';
 import {
-  CancelContainer,
   Content,
   ModalBody,
   ModalFooter,
   RadioBox,
-  TransactionTypeContainer,
-} from './style';
+  TransactionTypeContainer
+} from '../commonStyle';
+import { ModalProps } from '../commonTypes';
+import { schema } from './schema';
+
 import { FormProps } from './types';
 
 export default function CreateNewTransactionModal({
@@ -145,11 +145,11 @@ export default function CreateNewTransactionModal({
           </ModalBody>
         </Content>
 
-        <ModalFooter>
+        <ModalFooter justifyContent="end">
           <div>
-            <CancelContainer onClick={handleCloseModal}>
+            <a className="cancel-button" onClick={handleCloseModal}>
               Cancelar
-            </CancelContainer>
+            </a>
             <Button
               type="submit"
               disabled={loading || !isDirty || !isValid || value === '0,00'}

@@ -1,7 +1,7 @@
 import theme from '@src/theme';
 import { transparentize } from 'polished';
 import styled, { css } from 'styled-components';
-import { baseArchorButtonStyle, baseCancelButtonStyle } from '../style';
+import DropzoneContainerProps from './types';
 
 export const Content = styled.div`
   padding: 20px;
@@ -28,42 +28,6 @@ export const ModalBody = styled.div`
     }
   }
 `;
-
-export const ModalFooter = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: ${transparentize('0.7', '#28262E')};
-  justify-content: space-between;
-
-  div {
-    display: flex;
-    align-items: center;
-  }
-
-  a {
-    ${baseCancelButtonStyle}
-  }
-
-  button {
-    background: ${theme.colors.orange[700]};
-    border-radius: 5px;
-    color: ${theme.colors.txt};
-    transition: background-color 0.3s;
-    display: flex;
-
-    &:hover {
-      background-color: ${transparentize(0.3, theme.colors.orange[700])};
-      color: ${theme.colors.txt};
-    }
-  }
-`;
-
-interface DropzoneContainerProps {
-  isDragActive: boolean;
-  isDragReject: boolean;
-}
 
 const isDragActive = css`
   border-color: ${theme.colors.green[900]};
@@ -103,16 +67,21 @@ export const FileUploadedContainer = styled.div`
   padding: 0 20px 20px 20px;
 `;
 
-export const RemoveTransactionContainer = styled.div`
-  ${baseArchorButtonStyle}
-
-  a {
-    margin-left: 5px;
-  }
-`;
-
 export const DownloadTemplateFile = styled.div`
-  ${baseArchorButtonStyle}
+  display: flex;
+  align-items: center;
+  background-color: ${transparentize(0.8, '#8C8C8C')};
+  padding: 8px;
+  font-size: 0.68rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    transition: background-color 0.3s;
+    background-color: ${theme.colors.orange[700]};
+    color: ${theme.colors.txt};
+  }
 
   svg {
     font-size: 14px;
